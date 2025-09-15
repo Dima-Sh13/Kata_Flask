@@ -1,27 +1,32 @@
 {% extends "base.html" %}
 
 {% block pageBase %}
+
+
+
 <table>
   <tr>
   <th>Date</th>
   <th>Transaction</th>
   <th>Amount</th>
   </tr>
-  <tr>
-  <td>12/09/25</td>
-  <td>Compra</td>
-  <td>129.90 kr</td>
-  </tr>
-  <tr>
-  <td>13/09/25</td>
-  <td>Compra</td>
-  <td>10.90 kr</td>
-  </tr>
-  <tr>
-  <td>15/09/25</td>
-  <td>Compra</td>
-  <td>9.90 kr</td>
-  </tr>
+  {% for items in data %}
+    <tr>
+      <td> {{items["Date"]}} </td>
+      <td> {{items["Transaction"]}} </td>
+      <td> {{items["Amount"]}} </td>
+    </tr>
+  
+    <tr>
+      <td>13/09/25</td>
+      <td>Compra</td>
+      <td>10.90 kr</td>
+    </tr>
+    <tr>
+      <td>15/09/25</td>
+      <td>Compra</td>
+      <td>9.90 kr</td>
+    </tr>
 </table>
 <button> <a href="/new">New</a>Nuevo registro</button>
 

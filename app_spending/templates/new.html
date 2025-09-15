@@ -1,38 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spending: New</title>
-</head>
-<style>
+{% extends "base.html" %}    
     
+{% block pageBase %}    
+<section>
+    <form>
+    <label for="date">Date:</label><br>
+    <input type="date"  Date="tdate" ><br>
+    <label for="Transaction">Transaction:</label><br>
+    <input type="text"  name="Transaction" ><br>
+    <label for="Amount">Amount</label><br>
+    <input type="number"  name="Amount" ><br><br>
+    <input type="button" value="Save">
+</form> 
 
-</style>
-<body>
-    <header>
-        <h1>Nuevo Registro de Transaccion</h1>
+<button><a href="/"></a>Volver</button>
 
-    </header>
-    <section>
-        <form>
-        <label for="date">Date:</label><br>
-        <input type="date"  Date="tdate" ><br>
-        <label for="Transaction">Transaction:</label><br>
-        <input type="text"  name="Transaction" ><br>
-        <label for="Amount">Amount</label><br>
-        <input type="number"  name="Amount" ><br><br>
-        <input type="button" value="Save">
-    </form> 
-
-
-    </section>
-    <footer>
-        <p>Creado por Dmytro Shalupnya.</p>
-    </footer>
-    
-    
-
-    <button><a href="/"></a>Volver</button>
-</body>
-</html>
+{% endblock %}
