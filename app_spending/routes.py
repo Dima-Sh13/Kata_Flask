@@ -30,6 +30,7 @@ def delete():
 from app_spending import app
 from flask import render_template, request, redirect
 import csv
+from datetime import date
 
 @app.route("/")
 def index():
