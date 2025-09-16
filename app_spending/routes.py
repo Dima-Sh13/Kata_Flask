@@ -53,6 +53,8 @@ def index():
 @app.route("/new",methods=["GET","POST"])
 def new():
     if request.method == "POST":
+        if validacion(request.form):
+            pass
         mifichero = open("data/movimientos.csv", "a",newline="")
         lectura = csv.writer(mifichero,delimiter=",",quotechar=" ")
         mifichero.close()
@@ -68,3 +70,14 @@ def delete():
 @app.route("/update")
 def update():
     return render_template("update.html",titulo="Actualizar",tipoAccion="Actualización",tipoBoton="Editar")
+
+
+def validacion(datosFormulario):
+    errores = []
+    hoy = str(date.today())
+    if datosFormulario["Date"] > hoy:
+        errores.append("la fecha no puede ser en el futuro")
+    if datosFormulario["Transaction"] == "":
+        errores.append("Debe agregar un concepto de transaccion")
+    if datosFormulario["Amount"]== "" or datosFormulario["Amount"] == 0:
+        errores.append("Introduzca una cantidad valida")        
