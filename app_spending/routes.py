@@ -28,7 +28,7 @@ def delete():
 
 
 from app_spending import app
-from flask import render_template, request
+from flask import render_template, request, redirect
 import csv
 
 @app.route("/")
@@ -52,7 +52,10 @@ def index():
 @app.route("/new",methods=["GET","POST"])
 def new():
     if request.method == "POST":
-        return f"Esto deberia registrarse {request.form}"
+        mifichero = open("data/movimientos.csv", "a",newline="")
+        lectura = csv.writer(mifichero,delimiter=",",quotechar=" ")
+        mifichero.close()
+        return redirect("/")
     else:
         return render_template("new.html",titulo="Nuevo",tipoAccion="Registro",tipoBoton="Guardar")
 
