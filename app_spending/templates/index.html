@@ -2,32 +2,34 @@
 
 {% block pageBase %}
 
+<style>
+  table,th,td{border: 1px solid rgb(100, 100, 100);}
 
+</style>
 
-<table>
+<table width="80%">
   <tr>
   <th>Date</th>
   <th>Transaction</th>
   <th>Amount</th>
   </tr>
   {% for items in data %}
-    <tr>
-      <td> {{items["Date"]}} </td>
-      <td> {{items["Transaction"]}} </td>
-      <td> {{items["Amount"]}} </td>
-    </tr>
-  
-    <tr>
-      <td>13/09/25</td>
-      <td>Compra</td>
-      <td>10.90 kr</td>
-    </tr>
-    <tr>
-      <td>15/09/25</td>
-      <td>Compra</td>
-      <td>9.90 kr</td>
-    </tr>
+  <tr>
+    <td>{{ items["Date"] }}</td>
+    <td>{{ items["Transaction"] }}</td>
+    <td
+  {% if items["Amount"] | float > 0 %}
+    style="background-color: lightgreen;"
+  {% else %}
+    style="background-color: lightcoral;"
+  {% endif %}
+>
+  {{ items["Amount"] }}
+</td>
+  </tr>
+{% endfor %}
+   
 </table>
-<button> <a href="/new">New</a>Nuevo registro</button>
+
 
 {% endblock %}

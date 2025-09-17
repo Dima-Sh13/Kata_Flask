@@ -1,13 +1,14 @@
-"""
+
 from app_spending import app
 from flask import render_template
 
 @app.route("/")
 def index():
     datos=[
-        {"Date":"12/09/25", "Transaction": "Compra", "Amount": "129.90"},
-        {"Date":"13/09/25", "Transaction": "Compra", "Amount": "29.90"},
-        {"Date":"14/09/25", "Transaction": "Compra", "Amount": "9.90"}
+        {"Date":"12/09/25", "Transaction": "Venta", "Amount": "129.90"},
+        {"Date":"13/09/25", "Transaction": "Venta", "Amount": "29.90"},
+        {"Date":"14/09/25", "Transaction": "Venta", "Amount": "9.90"},
+        {"Date":"14/09/25", "Transaction": "Compra", "Amount": "-9.90"}
 
     ]
     return render_template("index.html", data = datos)
@@ -40,13 +41,13 @@ def index():
     csvReader = csv.reader(fichero,delimiter=",",quotechar='"')
     for items in csvReader:
         datos.append(items)
-    """
+    
     datos=[
         {'fecha':'01/09/2025','concepto':'Salario','monto':1500},
         {'fecha':'05/09/2025','concepto':'Ropa','monto':-150},
         {'fecha':'10/09/2025','concepto':'Supermercado','monto':-200}
     ]
-    """
+    
     return render_template("index.html",data = datos,titulo="Lista")
 
 
@@ -81,3 +82,4 @@ def validacion(datosFormulario):
         errores.append("Debe agregar un concepto de transaccion")
     if datosFormulario["Amount"]== "" or datosFormulario["Amount"] == 0:
         errores.append("Introduzca una cantidad valida")        
+"""        
