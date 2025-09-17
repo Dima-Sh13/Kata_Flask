@@ -7,17 +7,22 @@
 </head>
 <style>
   table,th,td{border: 1opx solid rgb(100, red, blue);}
-
+  footer {
+    position: fixed;          /* Fija el footer a la ventana */
+    left: 0; right: 0; bottom: 0;  /* Lo pega al borde inferior */
+    height: 50px;             /* Altura conocida del footer */
+    background: #ddd; padding: 1rem;
+  }
 </style>
 <body>
 
   <header>
-    <h1>Aplicacion Web de control de gastos</h1>
+    <h1 style="width: 80%;">Aplicacion Web de control de gastos</h1>
     <div>
-      <a href="/">Inicio</a>
-      <a href="/new">Nuevo Registro</a>
-      <a href="/update">Actualizar Registro</a>
-      <a href="/delete">Borrar Registro</a>
+      <button style="background-color:aquamarine"> <a style="font-size: large;" href="/">Inicio</a></button>
+      <button style="background-color:aquamarine"><a style="font-size: large;" href="/new">Nuevo Registro</a></button>
+      <button style="background-color:aquamarine"><a style="font-size: large;" href="/update">Actualizar Registro</a></button>
+      <button style="background-color:aquamarine"><a style="font-size: large;" href="/delete">Borrar Registro</a></button>
     </div>
   </header>
 
@@ -33,7 +38,7 @@
 
     {% endblock %}
   </section>
-  <footer>
+  <footer >
     <p>Creado por Dmytro Shalupnya.</p>
 
 
