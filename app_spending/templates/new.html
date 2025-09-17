@@ -2,14 +2,14 @@
     
 {% block pageBase %}    
 <section>
-    <form>
+    <form method="POST">
     <label for="date">Date:</label><br>
     <input type="date"  Date="tdate" ><br>
     <label for="Transaction">Transaction:</label><br>
     <input type="text"  name="Transaction" ><br>
     <label for="Amount">Amount</label><br>
     <input type="number"  name="Amount" ><br><br>
-    <input type="button" value="Save">
+    <input type="submit" value="Save">
     </form> 
 </section>
 <button><a href="/">Volver</a></button>

@@ -1,22 +1,23 @@
 
 from app_spending import app
-from flask import render_template
+from flask import render_template, request
+import csv
 
 @app.route("/")
 def index():
-    datos=[
-        {"Date":"12/09/25", "Transaction": "Venta", "Amount": "129.90"},
-        {"Date":"13/09/25", "Transaction": "Venta", "Amount": "29.90"},
-        {"Date":"14/09/25", "Transaction": "Venta", "Amount": "9.90"},
-        {"Date":"14/09/25", "Transaction": "Compra", "Amount": "-9.90"}
-
-    ]
+    datos=[]
+    with open("../data/movimientos.csv", "r", encoding="utf-8") as f:
+        csvReader = csv.reader(f, delimiter=",", quotechar='"')
+        for i in csvReader:
+            datos.append(i)
     return render_template("index.html", data = datos)
 
-@app.route("/new")
+@app.route("/new", methods=["GET", "POST"])
 def new():
-    return render_template("new.html")
-
+    if request.method == "GET":
+        return render_template("new.html")
+    else:
+        print(request.form)
 
 @app.route("/update")
 def update():
