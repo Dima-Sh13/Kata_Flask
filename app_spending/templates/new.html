@@ -3,15 +3,19 @@
 {% block pageBase %}    
 <section>
     <form method="POST">
-    <label for="date">Date:</label><br>
-    <input type="date"  Date="tdate" ><br>
+    <label for="Date">Date:</label><br>
+    <input type="date"  name="Date" ><br>
     <label for="Transaction">Transaction:</label><br>
     <input type="text"  name="Transaction" ><br>
-    <label for="Amount">Amount</label><br>
+    <label for="Amount">Amount:</label><br>
     <input type="number"  name="Amount" ><br><br>
     <input type="submit" value="Save">
     </form> 
 </section>
+{% for item in error %}
+  <p style="color: red;">{{item}}</p>
+{% endfor %}
+
 <button><a href="/">Volver</a></button>
 
 {% endblock %}
