@@ -1,6 +1,6 @@
 
 from app_spending import app
-from flask import render_template, request
+from flask import render_template, request, redirect
 import csv
 from datetime import date
 num = 1
@@ -17,7 +17,7 @@ def index():
 @app.route("/new", methods=["GET", "POST"])
 def new():
     render = render_template("new.html")
-    ident = [0]
+    ident = []
     with open("data/movimientos.csv", "r", encoding="utf-8") as f:
         csvReader = csv.reader(f, delimiter=",", quotechar='"')
         
@@ -31,9 +31,6 @@ def new():
     else:
         with open("data/movimientos.csv", "a", newline="", encoding="utf-8") as f:
            
-               
-           
-            
             writer = csv.writer(f)
             if validacion(request.form) == True:
                 
@@ -42,12 +39,75 @@ def new():
             else:
                render = render_template("new.html", error = validacion(request.form))    
     return render
-@app.route("/update")
-def update():
-    return render_template("update.html")
+               
+           
+"""            
+@app.route("/update/<int:id>", methods=["GET", "POST"])
+def update(id):
+    reg = []
+    if request.method == "GET":
+        with open("data/movimientos.csv", "r", encoding="utf-8") as r:
+        
+            csvReader = csv.reader(r, delimiter=",", quotechar='"' )
+            for i in csvReader:
+                if i[0] == str(id):
+                    reg = i
+        return render_template("update.html", datos = reg)
+    elif request.method == "POST":
+        with open("data/movimientos.csv", "a", encoding="utf-8") as r:
+            csvReader = csv.reader(r, delimiter=",", quotechar='"' )
+            for i in csvReader:
+                if i[0] == id:
+                    i[1] = request.form[1]
+                    i[2] = request.form[2]
+                    i[3] = request.form[3]
+                    writer = csv.writer(r) 
+                    writer.writerow([i[0],i[1],i[2], i[3]])       
 
-@app.route("/delete")
-def delete():
+        return render_template("update.html", datos = reg)
+"""
+@app.route("/update/<int:id>", methods=["GET", "POST"])
+def update(id):
+    reg = []
+    if request.method == "GET":
+        # Abrimos el CSV en modo lectura
+        with open("data/movimientos.csv", "r", encoding="utf-8") as r:
+            csvReader = csv.reader(r, delimiter=",", quotechar='"')
+            for i in csvReader:
+                if i[0] == str(id):  # buscamos por ID
+                    reg = i
+        return render_template("update.html", datos=reg)
+
+    elif request.method == "POST":
+        filas = []
+        # Primero leemos todas las filas del CSV
+        with open("data/movimientos.csv", "r", encoding="utf-8") as r:
+            csvReader = csv.reader(r, delimiter=",", quotechar='"')
+            for i in csvReader:
+                if i[0] == str(id):  # si es el registro a actualizar
+                    # remplazamos los valores con los del formulario
+                    i[1] = request.form["Date"]
+                    i[2] = request.form["Transaction"]
+                    i[3] = request.form["Amount"]
+                    reg = i
+                filas.append(i)  
+
+        
+        if validacion(request.form) == True:
+            with open("data/movimientos.csv", "w", newline="", encoding="utf-8") as w:
+                writer = csv.writer(w, delimiter=",", quotechar='"')
+                writer.writerows(filas)
+        else:
+            return render_template("update.html", datos = reg, error = validacion(request.form))    
+
+        return redirect("/")
+
+
+    
+        
+
+@app.route("/delete/<int:id>",  methods=["GET", "POST"])
+def delete(id):
     return render_template("delete.html")
 
 def validacion(datosFormulario):
