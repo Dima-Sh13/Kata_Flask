@@ -109,17 +109,22 @@ def update(id):
 @app.route("/delete/<int:id>",  methods=["GET", "POST"])
 def delete(id):
     filas = []
+    deleted = []
         # Primero leemos todas las filas del CSV
     with open("data/movimientos.csv", "r", encoding="utf-8") as r:
         csvReader = csv.reader(r, delimiter=",", quotechar='"')
         for i in csvReader:
             if i[0] != str(id):  # si es el registro a actualizar
                 filas.append(i)  
-               
+            else:
+                deleted.append(i)   
 
         with open("data/movimientos.csv", "w", newline="", encoding="utf-8") as w:
             writer = csv.writer(w, delimiter=",", quotechar='"')
             writer.writerows(filas)
+        with open("data/deleted.csv", "a", newline="", encoding="utf-8") as wd:
+            writer2 = csv.writer(wd, delimiter=",", quotechar='"')
+            writer2.writerows(deleted)    
     
     return redirect("/")
     
