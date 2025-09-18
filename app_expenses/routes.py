@@ -1,5 +1,5 @@
 
-from app_spending import app
+from app_expenses import app
 from flask import render_template, request, redirect
 import csv
 from datetime import date

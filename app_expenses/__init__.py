@@ -1,6 +1,6 @@
 from flask import Flask
 app = Flask(__name__)
-from app_spending.routes import *
+from app_expenses.routes import *
 
 
 

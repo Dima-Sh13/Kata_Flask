@@ -1,1 +1,1 @@
-from app_spending import app
+from app_expenses import app
