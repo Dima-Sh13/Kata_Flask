@@ -12,6 +12,7 @@
   <th>Date</th>
   <th>Transaction</th>
   <th>Amount</th>
+  <th>Actions</th>
   </tr>
   {% for items in data %}
   <tr>
@@ -25,7 +26,7 @@
         style="background-color: lightcoral;"
       {% endif %}
     >   {{ items[3] }} $ </td>
-      
+    <td><button><a href="/update">Modificar</a></button> <button><a href="/delete">Borrar</a></button></td>  
     
   </tr>
 {% endfor %}
