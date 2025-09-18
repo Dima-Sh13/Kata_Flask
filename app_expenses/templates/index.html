@@ -7,7 +7,7 @@
   
 </style>
 
-<table width="80%">
+<table width="60%">
   <tr>
   <th>Date</th>
   <th>Transaction</th>
@@ -26,7 +26,7 @@
         style="background-color: lightcoral;"
       {% endif %}
     >   {{ items[3] }} $ </td>
-    <td><button><a href="/update/{{ items[0] }}">Modificar</a></button> <button><a href="/delete/"{{items[0]}}>Borrar</a></button></td>  
+    <td><a style="color: aliceblue;" href="/update/{{ items[0] }}"><button type="button" class="btn btn-info">Modify</button></a><a style="color: aliceblue;" href="/delete/{{ items[0] }}"> <button type="button" class="btn btn-danger">Delete</button></a></td>  
     
   </tr>
 {% endfor %}
